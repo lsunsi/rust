@@ -28,9 +28,10 @@ pub(crate) fn thir_body<'tcx>(
 
     let body = tcx.hir_body_owned_by(owner_def);
     let mut cx: ThirBuildCx<'tcx> = ThirBuildCx::new(tcx, owner_def);
-    if let Some(reported) = cx.typeck_results.tainted_by_errors {
-        return Err(reported);
-    }
+
+    // if let Some(reported) = cx.typeck_results.tainted_by_errors {
+    //     return Err(reported);
+    // }
 
     // Lower the params before the body's expression so errors from params are shown first.
     let owner_id = tcx.local_def_id_to_hir_id(owner_def);
